@@ -1,0 +1,37 @@
+def sort_merge(first_list):
+    
+    if len(first_list) > 1:
+        mid_point_of_list = len(first_list)//2
+        left_half_of_list = first_list[:mid_point_of_list]
+        right_half_of_list = first_list[mid_point_of_list:]
+        
+        sort_merge(left_half_of_list)
+        sort_merge(right_half_of_list)
+        
+        i=0
+        j=0
+        k=0
+        
+        while i < len(left_half_of_list) and j < len(right_half_of_list):
+            if left_half_of_list[i] <= right_half_of_list[j]:
+                first_list[k] = left_half_of_list[i]
+                i += 1
+            else: 
+                first_list[k] = right_half_of_list[j]
+                j += 1
+            k +=1
+                
+        while i < len(left_half_of_list):
+            first_list[k] = left_half_of_list[i]
+            i += 1
+            k += 1
+            
+        while j < len(right_half_of_list):
+            first_list[k] = right_half_of_list[j]
+            j += 1
+            k += 1
+            
+if __name__ == '__main__':           
+    first_list = [72, 17, 81, 34, 66, 29, 58, 73, 12]
+    sort_merge(first_list)
+    print("Your list has been sorted:" ,first_list)
